@@ -1,5 +1,22 @@
 #include "shell.h"
 
+pid_t _getpid()
+{
+	pid_t child_pid;
+
+	child_pid = fork();
+	if (child_pid == -1)
+	{
+		perror("Child process creation failed");
+		free(child_pid);
+	}
+	else if (child_pid == 0)
+	{
+	}
+
+}
+
+
 /**
  * prompt - prompt for user input
  * @ac: arguement counter
@@ -13,7 +30,6 @@ void prompt_user(int ac, char **av)
 	char *str = NULL;
 	size_t n = 0;
 	ssize_t strlen;
-	pid_t child_pid;
 	
 	while (1)
 	{
@@ -34,6 +50,5 @@ void prompt_user(int ac, char **av)
 		}
 
 		 _getpid();
-
 	}
 }
