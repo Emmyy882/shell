@@ -1,54 +1,44 @@
 #include "shell.h"
 
-pid_t _getpid()
-{
-	pid_t child_pid;
-
-	child_pid = fork();
-	if (child_pid == -1)
-	{
-		perror("Child process creation failed");
-		free(child_pid);
-	}
-	else if (child_pid == 0)
-	{
-	}
-
-}
-
-
 /**
- * prompt - prompt for user input
- * @ac: arguement counter
- * @av: array that store passed arguments
+ * main - begins execution of program
+ * @ac: arugument counter
+ * @av: array of  arguments
+ * @envp: gets environment variable
  *
- * Return: nothing
+ * Return: Always successful
  */
-void prompt_user(int ac, char **av)
+int main(int ac, char *av[], char *envp[])
 {
-	int i;
-	char *str = NULL;
-	size_t n = 0;
-	ssize_t strlen;
-	
+	char *readline = NULL;
+	char *prompt = "";
+	char *tokens;
+	size_t n = 1024;
+	size_t bytes;
+
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
+		prompt = "$ ";
+
 	while (1)
 	{
-		printf("#cisfun$ ");
+		/* display prompt */
+		write(STDIN_FILENO, prompt, 2);
 
-		strlen = getline(&str, &n, stdin);
-		if (strlen == -1)
+		readline = malloc(sizeof(char) * n);
+		/* getting the input from the keyboard */
+		bytes = getline(&readline, &n, stdin);
+		if (bytes == -1)
 		{
-			free(lineptr);
+			free(readline);
 			exit(EXIT_FAILURE);
 		}
 
-		i = 0;
-		 while (str[i])
+		if (readline[0]  != '\n')
 		{
-			if (str[i] == '\n')
-				str[i] = '\0';
+			tokens = _strtok(readline, " ");
+			if (strcmp("exit", tokens) == 0)
+				break;
 		}
-
-		 _getpid();
 	}
+
 }
