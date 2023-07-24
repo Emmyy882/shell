@@ -1,6 +1,6 @@
 #include "shell.h"
 
-char **_strtok(char *str)
+void tokenize()
 {
 	char *token;
 	char **tokens;
@@ -12,18 +12,16 @@ char **_strtok(char *str)
 	tokens = malloc(sizeof(char) * 32);
 	if (tokens == NULL)
 	{
-		perror("error in memory allocation");
 		exit(1);
 	}
 
-	token = strtok(str, " ");
+	token = _strtok(cmdline, " ");
 	while (token)
 	{
-		token = strdup(token);
-		tokens[index] = token;
+		_tokens[index] = strdup(token);
 		index++;
-		token = strtok(NULL, " ");
+		token = _strtok(NULL, " ");
 	}
 
-	return (tokens);
+	tokens = _tokens;
 }

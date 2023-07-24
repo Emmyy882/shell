@@ -8,5 +8,9 @@ char *_getenv(char *key)
 	{
 		if (strncmp(environ[i], key, strlen(key)) == 0)
 		{
-			write(STDOUT_FILENO, environ[i], 4
+			return (environ[i]);
+		}
+	}
+	return (NULL);
+}
 
