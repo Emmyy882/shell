@@ -32,6 +32,6 @@ void run_cmd(char *prompt)
 			print_error_message(); /* prints error message */
 
 		free_ptr_array(tokens);
-		free(_cmdline);
+		free(current_cmdline);
 	}
 }

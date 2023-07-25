@@ -15,7 +15,7 @@ int main(int ac, char *av[])
 	char *prompt = "";
 
 	cmd_name = av[0];
-	program_initializer_data();
+	program_data_initializer();
 
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 		prompt = "$ ";
