@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stddef.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
@@ -26,7 +27,7 @@ extern char *command_name;
 
 void program_data_initializer();
 void run_cmd(char *prompt);
-char **_strtok(char *str, char *delim);
+char *_strtok(char *str, char *delim);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 void tokenize();

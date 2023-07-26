@@ -7,14 +7,12 @@
  *
  * Return: Always successful
  */
-
-char *cmd_name;
-
+char *command_name;
 int main(int ac, char **av)
 {
-	char *prompt = "";
+	char *prompt = " ";
 
-	cmd_name = av[0];
+	command_name = av[0];
 	program_data_initializer();
 	 /* check if shell is in interactive mode */
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))

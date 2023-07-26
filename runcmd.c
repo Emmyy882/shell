@@ -32,7 +32,7 @@ void run_cmd(char *prompt)
 		/* split command line arguments into tokens */
 		tokenize();
 
-		isbuiltin = error_code = built_in();
+		isbuiltin = error_code = is_builtin();
 		if (isbuiltin == NOT_BUILTIN)
 			error_code = execute_bin();
 

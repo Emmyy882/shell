@@ -41,9 +41,9 @@ void print_error(char *msg)
 
 void print_error_message(void)
 {
-	char *err_no = num_to_str(execution_counter);
+	char *err_no = num_to_str(exec_counter);
 
-	print_error(cmd_name);
+	print_error(command_name);
 	print_error(": ");
 	print_error(err_no);
 	print_error(": ");

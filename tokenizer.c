@@ -4,7 +4,7 @@ void tokenize()
 {
 	char *token;
 	char **_tokens;
-	index = 0;
+	int index = 0;
 
 	_tokens = malloc(sizeof(char) * 32);
 	if (!_tokens)

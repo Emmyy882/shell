@@ -34,7 +34,9 @@ int *get_path(char *command)
 			return (fullpath);
 		}
 
+		/* free the current path */
 		free(fullpath);
+		/* get the next path */
 		dir = _strtok(NULL, ":");
 	}
 
@@ -77,16 +79,18 @@ int execute_bin()
 
 	if (command[0] == '/' || command[0] == '.')
 	{
-		if (access(command, F_OK) != 0 || access(command, X_Ok) != 0)
+		if (access(command, F_OK) != 0 || access(command, X_OK) != 0)
 		{
 			errno = 127;
 			return (-1);
 		}
 	}
 	else
-	{
+	{	
+		/* find the path to the executable if it exits */
 		path = get_path(command);
 
+		/* if path doesn't */
 		if (path == NULL)
 		{
 			errno = 127;
