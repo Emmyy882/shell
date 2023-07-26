@@ -10,8 +10,10 @@
 char *command_name;
 int main(int ac, char *av[])
 {
-	char *prompt = " ";
+	char *prompt = "";
 	command_name = av[0];
+	(void) ac;
+
 	program_data_initializer();
 	 /* check if shell is in interactive mode */
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
