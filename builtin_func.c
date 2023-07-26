@@ -8,8 +8,8 @@ int builtin_exit()
 		status = atoi(tokens[1]);
 	
 	/* Free any necessary program data */
-	free_pointers_array(tokens);
-	free(cur_cmdline);
+	free_ptr_array(tokens);
+	free(current_cmdline);
 	exit(status);
 }
 

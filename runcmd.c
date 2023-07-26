@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * run_cmd - display the commandline prompt and gets input from the user
+ * @prompt: thr commandline prompt
+ * Rreturn: void
+ */
+
 /* keeps count of the number of executed command lines */
 int exec_counter = 0;
 
@@ -15,6 +21,8 @@ void run_cmd(char *prompt)
 		
 		/* display prompt */
 		write(STDIN_FILENO, prompt, strlen(prompt));
+
+		/* get what is passed in command line */
 		bytes = _getline();
 
 		/* if command line is emppty */

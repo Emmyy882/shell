@@ -12,5 +12,6 @@ char *_getenv(char *key)
 		}
 	}
 	return (NULL);
-}
+ear
+
 

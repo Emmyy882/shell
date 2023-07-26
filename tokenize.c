@@ -3,23 +3,19 @@
 void tokenize()
 {
 	char *token;
-	char **tokens;
+	char **_tokens;
 	index = 0;
 
-	if (str[index] == '\0')
-		return (NULL);
-
-	tokens = malloc(sizeof(char) * 32);
-	if (tokens == NULL)
+	_tokens = malloc(sizeof(char) * 32);
+	if (!_tokens)
 	{
 		exit(1);
 	}
 
-	token = _strtok(cmdline, " ");
+	token = _strtok(current_cmdline, " ");
 	while (token)
 	{
-		_tokens[index] = strdup(token);
-		index++;
+		_tokens[index++] = strdup(token);
 		token = _strtok(NULL, " ");
 	}
 

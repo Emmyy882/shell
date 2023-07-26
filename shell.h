@@ -1,5 +1,5 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef _SHELL_H
+#define _SHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +11,10 @@
 #include <errno.h>
 
 #define NOT_BUILTIN 67
+typedef struct builtin {
+	char *name;
+	int (*action)();
+} builtin_action;
 
 extern int errno;
 extern char **environ;
@@ -19,18 +23,14 @@ extern char **tokens;
 extern char *current_cmdline;
 extern char *command_name;
 
-typedef struct builtin {
-	char *name;
-	int (*action)();
-} builtin_action;
 
+void program_data_initializer();
+void run_cmd(char *prompt);
 char **_strtok(char *str, char *delim);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
-void run_cmd(char *prompt);
 void tokenize();
 int execute_bin();
-void program_data_initializer();
 char *_getenv(char *key);
 int is_builtin();
 ssize_t _getline();

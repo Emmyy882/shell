@@ -1,11 +1,12 @@
 #include "shell.h"
 
 char **tokens;
-char *cur_cmdline;
+char *current_cmdline;
 
-void initialize_all_program_data() {
+void program_data_initializer()
+{
 
 	/* Initializes and allocated all memory needed by the shell */
 	tokens = NULL;
-	cur_cmdline = NULL;
+	current_cmdline = NULL;
 }

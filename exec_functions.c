@@ -12,7 +12,7 @@ int *get_path(char *command)
 	value = _strtok(NULL, "=");
 	dir = _strtok(value, ":");
 
-	while (dir)
+	while (dir != NULL)
 	{
 		/* get the length of fullpath */
 		len = (strlen(command) + strlen(dir) + 2);
@@ -30,7 +30,7 @@ int *get_path(char *command)
 		/* check if fullpath exist */
 		if (access(fullpath, F_OK) == 0)
 		{
-			free(fullpath);
+			free(path);
 			return (fullpath);
 		}
 

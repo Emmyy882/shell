@@ -33,7 +33,7 @@ ssize_t _getline()
 	}
 	
 	/* Pick the first commandline and set it as the current command line to execute */
-	cur_cmdline = cmdlines[0];
+	current_cmdline = cmdlines[0];
 	
 	/* Shift the commands to make the next command line be at the first index*/
 	i = 0;
