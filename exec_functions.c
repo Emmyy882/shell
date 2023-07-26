@@ -31,7 +31,7 @@ int *get_path(char *command)
 		if (access(fullpath, F_OK) == 0)
 		{
 			free(path);
-			return (fullpath);
+			return ((int *)fullpath);
 		}
 
 		/* free the current path */
@@ -68,7 +68,7 @@ void execute()
 
 		/* if the child process exited normally, set the errno to the exit code */
 		if (WIFEXITED(status))
-			errno = WIFEXITED(status);
+			errno = WEXITSTATUS(status);
 	}
 }
 
@@ -88,7 +88,7 @@ int execute_bin()
 	else
 	{	
 		/* find the path to the executable if it exits */
-		path = get_path(command);
+		path = (char *)get_path(command);
 
 		/* if path doesn't */
 		if (path == NULL)
