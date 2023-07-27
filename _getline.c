@@ -99,14 +99,14 @@ ssize_t get_input(info_t *info)
  */
 ssize_t read_buf(info_t *info, char *buf, size_t *i)
 {
-	ssize_t r = 0;
+	ssize_t l = 0;
 
 	if (*i)
 		return (0);
-	r = read(info->readfd, buf, READ_BUF_SIZE);
-	if (r >= 0)
-		*i = r;
-	return (r);
+	l = read(info->readfd, buf, READ_BUF_SIZE);
+	if (l >= 0)
+		*i = l;
+	return (l);
 }
 
 /**
@@ -122,7 +122,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	static char buf[READ_BUF_SIZE];
 	static size_t i, len;
 	size_t k;
-	ssize_t r = 0, s = 0;
+	ssize_t l = 0, s = 0;
 	char *p = NULL, *new_p = NULL, *c;
 
 	p = *ptr;
@@ -132,7 +132,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 		i = len = 0;
 
 	r = read_buf(info, buf, &len);
-	if (r == -1 || (r == 0 && len == 0))
+	if (r == -1 || (l == 0 && len == 0))
 		return (-1);
 
 	c = _strchr(buf + i, '\n');
