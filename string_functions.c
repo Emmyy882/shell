@@ -1,92 +1,74 @@
 #include "shell.h"
 
 /**
- * _strcpy - copy a string
- * @dest: destination string
- * @src: the source string
- *
- * Return: copied string
+ **_strncpy - copies a string
+ *@dest: the destination string to be copied to
+ *@src: the source string to be copied from
+ *@n: the amount of characters to be copied
+ *Return: the concatenated string
  */
-char *_strcpy(char *dest, char *src)
+char *_strncpy(char *dest, char *src, int n)
 {
-	int i;
+	int i, j;
+	char *s = dest;
 
-	if (src == NULL)
-		return (NULL);
 	i = 0;
-	while (src[i] != '\0')
+	while (src[i] != '\0' && i < n - 1)
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	if (i < n)
+	{
+		j = i;
+		while (j < n)
+		{
+			dest[j] = '\0';
+			j++;
+		}
+	}
+	return (s);
 }
 
 /**
- * _strcat - concatenates two strings
- * @dest: destination string
- * @src: source string
- *
- * Return: concatenated string
+ **_strncat - concatenates two strings
+ *@dest: the first string
+ *@src: the second string
+ *@n: the amount of bytes to be used
+ *Return: the concatenated string
  */
-char *_strcat(char *dest, char *src)
+char *_strncat(char *dest, char *src, int n)
 {
 	int i, j;
+	char *s = dest;
 
 	i = 0;
+	j = 0;
 	while (dest[i] != '\0')
 		i++;
-	j = 0;	
-	while (src[j] != '\0')
+	while (src[j] != '\0' && j < n)
 	{
 		dest[i] = src[j];
 		i++;
 		j++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	if (j < n)
+		dest[i] = '\0';
+	return (s);
 }
 
-char *_strtok(char *str, char *delim)
+/**
+ **_strchr - locates a character in a string
+ *@s: the string to be parsed
+ *@c: the character to look for
+ *Return: (s) a pointer to the memory area s
+ */
+char *_strchr(char *s, char c)
 {
-	static char *s; /* Local buffer to track the progress */
-	int i;          /* Delimiter index */
-	char *token;
+	do {
+		if (*s == c)
+			return (s);
+	} while (*s++ != '\0');
 
-	/* Set the buffer if we are calling the function the first time */
-	if (str != NULL)
-		s = str;
-	
-	/* Get the start of the token */
-	for (; *s != '\0'; s++)
-	{
-		for (i = 0; delim[i] != '\0'; i++)
-		{
-			if (*s == delim[i])
-				break;
-		}
-		if (delim[i] == '\0')
-			break;
-	}
-	
-	/* Set the token to point to the start */
-	token = s;
-	if (*token == '\0')
-		return (NULL);
-	
-	/* Set the end of the token */
-	for (; *s != '\0'; s++)
-	{
-		for (i = 0; delim[i] != '\0'; i++)
-		{
-			if (*s == delim[i])
-			{
-				*s = '\0';
-				s++;
-				return (token);
-			}
-		}
-	}
-	return (token);
+	return (NULL);
 }
